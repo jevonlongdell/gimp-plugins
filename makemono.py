@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import math
+#import math
 from gimpfu import *
 
 def python_makemono(img, layer) :
@@ -10,7 +10,7 @@ def python_makemono(img, layer) :
     pdb.gimp_image_add_layer(img,newlayer,0)
     #part 2 -- invert it and blur it
     pdb.gimp_invert(newlayer)
-    blursize = layer.height/30.0;
+    blursize = max(layer.height,layer.width)/5.0;
     pdb.plug_in_gauss(img,newlayer,blursize,blursize,1)
     #part 3 -- merge back with starting layer
     pdb.gimp_layer_set_opacity(newlayer,50.0)
@@ -58,7 +58,7 @@ def python_makemono(img, layer) :
         nwhite=newnwhite
         nblack=newnblack
         var = nwhite*nblack*(meanwhite-meanblack)**2
-        print T, math.log10(var), var
+#        print T, math.log10(var), var
         if var>best_var:
             best_var=var
             bestT=T
