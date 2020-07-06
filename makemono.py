@@ -11,6 +11,8 @@ def python_makemono(img, layer) :
     #part 2 -- invert it and blur it
     pdb.gimp_invert(newlayer)
     blursize = max(layer.height,layer.width)/5.0;
+    if blursize>500:
+        blursize=500
     pdb.plug_in_gauss(img,newlayer,blursize,blursize,1)
     #part 3 -- merge back with starting layer
     pdb.gimp_layer_set_opacity(newlayer,50.0)
